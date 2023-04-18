@@ -17,7 +17,17 @@ pipeline{
       }
 
  }
-}
+ stage('docker build and docker push to nexus repository'){
+      steps{
+	        script{
+				    
+	        }
+      }
+ }
+
+  
+  
+ }
 }    
     
     
