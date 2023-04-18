@@ -15,14 +15,13 @@ pipeline{
           }
         }
       }
-   }
-stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-token' 
-				}
-            }
-        }
+      stage('docker build and docker push to nexus repository'){
+          steps{
+	      script{
+				    
+	      }
+          }
+      }
  }
 }
     
