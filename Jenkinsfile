@@ -27,11 +27,11 @@ pipeline{
 		         sh '''
 			 docker build -t 13.232.208.188:8033/springapp:${VERSION} .
 			 
-			 docker login -u admin -p admin123 13.232.208.188:8083
+			 docker login -u admin -p admin123 13.232.208.188:8085
 			 
-			 docker push 13.232.208.188:8033/springapp:${VERSION}
+			 docker push 13.232.208.188:8085/springapp:${VERSION}
 			 
-			 docker rmi 13.232.208.188:8033/springapp:${VERSION}
+			 docker rmi 13.232.208.188:8085/springapp:${VERSION}
 	                 '''
 			}
 		}
