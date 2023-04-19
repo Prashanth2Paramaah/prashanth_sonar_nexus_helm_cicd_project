@@ -29,8 +29,7 @@ pipeline{
 			 
 			 docker login -u admin -p admin123 13.232.208.188:8083
 			 
-			 docker push 13.232.208.188
-			 /springapp:${VERSION}
+			 docker push 13.232.208.188/springapp:${VERSION}
 			 
 			 docker rmi 13.232.208.188/springapp:${VERSION}
 	                 '''
