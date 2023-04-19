@@ -4,7 +4,7 @@ pipeline{
 		VERSION = "${env.BUILD_ID}"
 	}
   stages{
-    stage('Maven Build & Sonar Quality Status'){
+    stage('Maven Build & Sonar Quality Analysis'){
       agent{
         docker {
           image 'maven'
@@ -20,7 +20,7 @@ pipeline{
       }
 
  }
- stage('Docker Build'){
+ stage('Docker Image Build'){
       steps{
 	        script{
 			withCredentials([string(credentialsId: 'nexus_password', variable: 'nexus-credentials')]) {
@@ -33,7 +33,7 @@ pipeline{
 			
       }
  }
- stage('Push Image to Nexus Server'){
+ stage('Push Docker Image to Nexus Server'){
       steps{
 	        script{
 			withCredentials([string(credentialsId: 'nexus_password', variable: 'nexus-credentials')]) {
