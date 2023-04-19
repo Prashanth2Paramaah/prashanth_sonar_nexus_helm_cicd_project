@@ -4,7 +4,7 @@ pipeline{
 		VERSION = "${env.BUILD_ID}"
 	}
   stages{
-    stage('sonar quality status'){
+    stage('Maven Build & Sonar Quality Status'){
       agent{
         docker {
           image 'maven'
@@ -20,13 +20,24 @@ pipeline{
       }
 
  }
- stage('docker build and docker push to nexus repository'){
+ stage('Docker Build'){
       steps{
 	        script{
 			withCredentials([string(credentialsId: 'nexus_password', variable: 'nexus-credentials')]) {
 		         sh '''
-			 docker build -t 3.6.38.94:8085/springapp:${VERSION} .
-			 
+			 docker build -t 3.6.38.94:8085/springapp:${VERSION} .	 
+	                 '''
+			}
+		}
+			
+			
+      }
+ }
+ stage('Push Image to Nexus Server'){
+      steps{
+	        script{
+			withCredentials([string(credentialsId: 'nexus_password', variable: 'nexus-credentials')]) {
+		         sh '''		 
 			 docker login -u admin -p admin123 3.6.38.94:8085
 			 
 			 docker push 3.6.38.94:8085/springapp:${VERSION}
