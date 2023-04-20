@@ -4,6 +4,13 @@ pipeline{
 		VERSION = "${env.BUILD_ID}"
 	}
   stages{
+       stage('Clean Workspace'){
+	   steps{
+	      script{
+		   cleanWs()
+	      }
+           }
+       }
     stage('Maven Build & Sonar Quality Analysis'){
       agent{
         docker {
