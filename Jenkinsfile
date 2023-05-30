@@ -67,7 +67,7 @@ stage('Pushing helm chart to the nexus repo') {
 	steps{
 		script{
 		   withCredentials([string(credentialsId: 'nexus_password', variable: 'nexus-credentials')]) {
-		      dir('kubernetes/myapp/') {
+		      dir('kubernetes/') {
 		          sh '''
 			  helmversion=$(helm show chart . | grep version | cut -d: -f 2 | tr -d ' ')
 			  tar -czvf myapp-${helmversion}.tgz myapp/
