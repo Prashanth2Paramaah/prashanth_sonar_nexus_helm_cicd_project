@@ -63,6 +63,13 @@ stage('Identifying misconfigs using datree in helm charts'){
         }
 		  
 }
+stage('Pushing helm chart to the nexus repo') {
+	steps{
+		script{
+		sh 'curl -u admin:$nexus_password http://nexus_machine_ip:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v'
+		}
+	}
+}	
   
   
 	
