@@ -71,7 +71,7 @@ stage('Pushing helm chart to the nexus repo') {
 		          sh '''
 			  helmversion=$(helm show chart myapp | grep version | cut -d: -f 2 | tr -d ' ')
 			  tar -czvf myapp-${helmversion}.tgz myapp/
-			  curl -u admin:$nexus_password http://52.66.86.136:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v
+			  curl -u admin:$nexus_credentials http://52.66.86.136:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v
 			  '''
 		      }            
 		   }
